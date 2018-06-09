@@ -1,0 +1,2115 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>itcastmark:C:\Users\lichengxiang\Desktop\MD\Knowledge\知识点</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="js-">js复习</h1>
+<h2 id="-js-">一、js数据类型/流程控制</h2>
+<h3 id="-">数据类型</h3>
+<pre><code>    1.简单数据类型（栈）
+        (1)string;(2)number;特殊值:NaN (3)boolean;(4)undefined;
+        1.1 typeof
+        typeof 用于检测简单数据的类型;
+        1.2 数据类型之间的转换
+            1.2.1 其他数据类型转number
+                a.Number()
+                    可用于任何数据类型转number
+                    **注意点**
+                    1.（）里面的内容可看成数字就可以转我Number;如果不是数值，则会转为NaN;
+                    2.（）里面是数值，但是数值之间有空格，也会转为NaN;
+                    3.（）为空或者是空格，会转换为0；
+                b.parseInt()
+                    专用于字符串的转换;
+                    **注意点**
+                    1.（）里面的内容从左往右查找开始转换，如果遇到数字转为数字就会转为Number类型，一旦遇到非数字,则停止转换
+                    2.（）里面如果为空，则会转为NaN;
+                    3.（）里面的字符串如果是小数，那么只会转换整数部分；
+                c.parseFloat()
+                    与parseInt()用法相类似，唯一区别是parseFloat()可以转换小数部分
+
+            1.2.2 其他数据类型转string
+                a.string()
+                    string(obj)// 可以转null 和 undefined;
+                b.toString()
+                    obj.toString() // 不能转 null 和 undefined;
+
+            1.2.3 其他数据类型转boolean
+                a. 对需要转换的内容进行算数运算
+                b. 在需要转换的内容前面加 ‘+’
+                c. Boolean()
+                    null,空字符串,false,0,NaN,undefined   可以转为false;
+                    *空格会转为ture;
+
+    2.复杂数据类型（堆）
+        （1）Array (2) object (3) Data对象 (4) function(){} (5)null
+</code></pre><h3 id="math-">Math对象</h3>
+<pre><code>    1.2.1 Math.pow(a,b)  a的b次方
+    1.2.2 Math.round()  四舍五入
+    1.2.3 Math.ceil()   向上取整
+    1.2.4 Math.floor()   向下取整
+    1.2.5 Math.max()   最大值
+    1.2.6 Math.min()   最小值
+    1.2.7 Math.random()   随机生成一个0~1之间的数字
+</code></pre><h3 id="-">运算符的比较</h3>
+<pre><code>    1.如果两个值具有相同的类型，那么就检测他的等同性.
+    2.如果两个值的类型不同，则用以下规则
+        2.1 如果一个值类型是null,另一个值类型是undefined;  则他们相等
+        2.2 如果一个值是数字，另一个是字符串，则将字符串转化为数值再进行比较
+        2.3 如果一个是true,将它转为1；在进行比较,false也一样；
+        2.4 如果一个值是对象，另一个值数字或字符串，将对象转换成原始类型的值，在进行比较
+        2.5 其他的数值组合是不相等的；
+</code></pre><h3 id="-">选择结构</h3>
+<ul>
+<li>if(){          }</li>
+<li>if(){          }else{  }</li>
+<li>if(){   }else if(){        }else{            }</li>
+<li>switch( ){ case: ; break}</li>
+<li>三元表达式   A&gt;B ? tur : false;</li>
+</ul>
+<h3 id="-">循环结构</h3>
+<ul>
+<li>for(var i = ?; i &lt; ? ; i++){    }</li>
+<li>while( ){ 循环体 }</li>
+<li><p>do{ 循环体 }while( )</p>
+<pre><code> 循环中的break和continue;
+     1.循环中，如果遇到break,就会结束当前的循环；
+     2.循环中，如果遇到continue,就会结束当前次的循环，但仍进行下一次循环；
+</code></pre></li>
+</ul>
+<h2 id="array-string-">Array()方法&amp;&amp;String对象方法</h2>
+<h3 id="-">数组的方法</h3>
+<pre><code>    2.1.1 数组的长度
+        arr.length;
+        清空数组的方法：（1）arr.length = 0; (2) arr = [];
+
+    2.1.2 concat() 
+        方法用于链接合并多个数组，
+        var a = [1,2,3]; a.concat(4,5); ==&gt; 1,2,3,4,5
+
+    2.1.3 join() 
+        用于把数组中的所有元素放入一个字符串。
+        arr[0] = &quot;George&quot;
+        arr[1] = &quot;John&quot;
+        arr[2] = &quot;Thomas&quot;
+        arr.join() ==&gt; George,John,Thomas;
+        join()中可以放入分隔符，输出结果就是以括号内分隔符分隔的字符串
+
+    2.1.4 pop() 
+        用于删除并返回数组的最后一个元素。
+        var arr = new Array(3)
+            arr[0] = &quot;George&quot;
+            arr[1] = &quot;John&quot;
+            arr[2] = &quot;Thomas&quot;
+
+            arr.pop() ==&gt; &quot;Thomas&quot;
+        arr ==&gt; [&quot;George&quot;,&quot;John&quot;]
+
+    2.1.5 push()
+        向数组的末尾添加一个或多个元素，并返回新的长度。
+        var arr = new Array(3)
+            arr[0] = &quot;George&quot;
+            arr[1] = &quot;John&quot;
+            arr[2] = &quot;Thomas&quot;
+
+        arr.push(&#39;sandy&#39;);
+        arr ==&gt; [&quot;George&quot;,&quot;John&quot;,&quot;Thomas&quot;,&quot;sandy&quot;]
+
+    2.1.5 shift() 
+        用于把数组的第一个元素从其中删除，并返回第一个元素的值。
+        var arr = new Array(3)
+            arr[0] = &quot;George&quot;
+            arr[1] = &quot;John&quot;
+            arr[2] = &quot;Thomas&quot;
+
+        arr.shift() ==&gt; &quot;George&quot;
+        arr ==&gt; [John,Thomas];
+
+    2.1.6 unshift() 
+        可向数组的开头添加一个或更多元素，并返回新的长度。
+        var arr = new Array()
+            arr[0] = &quot;George&quot;
+            arr[1] = &quot;John&quot;
+            arr[2] = &quot;Thomas&quot;
+
+        arr.unshift(&quot;sandy&quot;);
+        arr ==&gt; [&quot;sandy&quot;,&quot;George&quot;,&quot;John&quot;,&quot;Thomas&quot;]
+
+    2.1.7 reverse()
+        颠倒数组中元素的顺序。
+
+    2.1.8 slice()
+        可从已有的数组中返回选定的元素；可用于提取数组的某一部分；
+        var arr = new Array(3)
+            arr[0] = &quot;George&quot;
+            arr[1] = &quot;John&quot;
+            arr[2] = &quot;Thomas&quot;
+            arr[3] = &quot;James&quot;
+            arr[4] = &quot;Adrew&quot;
+            arr[5] = &quot;Martin&quot;
+
+        arr.slice(2,4) ==&gt;Thomas,James  end索引上的数组不会被截取
+        arr ==&gt;George,John,Thomas,James,Adrew,Martin //也就是，slice不会改变数组的长度，并不会修改数组！
+
+    2.1.9 splice()
+        方法用于插入、删除或替换数组的元素
+        arr.splice(从何处删除/添加元素,删除或添加的数量,向数组中添加的元素(可以是多个元素))
+
+        splice() 方法会直接对数组进行修改！
+</code></pre><h4 id="es5-">ES5新增的数组方法</h4>
+<ul>
+<li><p>forEach()</p>
+<p>  arr.forEach(function(item,index,arr){});//forEach没有返回值，返回的只有undefined;</p>
+</li>
+<li><p>map()</p>
+<p>  arr.map(function(item,index,arr){});//可以设置返回值，return的值组成新数组；</p>
+</li>
+<li><p>filter()</p>
+<p>  过滤数组，返回新过滤后的数组.</p>
+<p>  arr.filter(function(item,index,arr){ if(){return true}else{return false}});</p>
+</li>
+</ul>
+<h3 id="-string-">字符串String对象的方法</h3>
+<pre><code>    2.2.1 charAt()
+        返回指定索引位置上的字符；
+        var str=&quot;Hello world!&quot;
+            str.charAt(1) ==&gt; e;
+
+    2.2.2 concat()
+        链接字符串; 类比数组中的concat();
+
+    2.2.3 indexOf() 
+        返回某个指定的字符串值在字符串中(首次)出现的位置;如果找不到该字符，则会返回-1；
+        var str=&quot;Hello world!&quot;
+        str.indexOf(&#39;H&#39;) ==&gt; 0;
+
+    2.2.4 lastIndexOf()
+        类比 indexOf()  返回一个指定的字符串值最后出现的位置
+
+    2.2.5 replace() 
+        用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串；
+        string.replace(regexp/substr规定子字符串或要替换的模式,replacement规定了替换文本)
+
+    2.2.6 slice() 
+        提取字符串的某个部分，并以新的字符串返回被提取的部分；
+        str.slice(start,end);
+        类比数组中的slice()方法；
+
+        类似的还有：substring();substr;
+
+    2.2.7 trim()
+        去掉字符串首位的空格
+
+    2.2.8 split()
+        将字符串以某种分隔符分隔并以数组方式返回；
+        类比数组中join();与之相反
+</code></pre><h2 id="function">function</h2>
+<h3 id="-">函数的定义</h3>
+<pre><code>        函数的定义：(1) function fn(){    };  (2) var fn = function(){    };   (3) 构造函数   
+            function fn(){ };
+            var F1 = new fn();
+</code></pre><hr>
+<h3 id="-">函数的返回值</h3>
+<pre><code>        函数中的return关键字，return可以结束当前函数，可以设置函数的返回值；
+    如果return后没有跟内容，返回undefined;如果函数内容没有写return,返回的也是undefined;
+</code></pre><ul>
+<li><strong>构造函数中设置返回值的情况</strong></li>
+<li><pre><code> 1）.如果返回值是一个基本数据类型，则会被忽略；
+ 2）.如果返回的是一个复杂数据类型，则会返回该数据类型，将new关键字创建的对象替换！
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="-">作用域</h3>
+<pre><code>    js中作用域：（1）全局作用域：script标签里面，任意的函数外部。（2）局部作用域：任意的函数内（在js中，只有函数能分割作用域。）；
+</code></pre><h2 id="date-">Date对象</h2>
+<pre><code>        var date = new Date();        
+        年  ---   date.getFullYear()
+        月  ---   date.getMonth()+1  //默认月份从0开始计算，如要获取当前月份则需要进行+1；
+        日  ---   date.getDete();
+        小时 ---   date.getHours();
+        分   ---   date.getMinutes();
+        秒   ---   date.getSeconds();
+</code></pre><h2 id="object">Object</h2>
+<h3 id="-">对象的创建</h3>
+<pre><code>    (1) var obj = new Object();
+        obj.name = &quot;sandy&quot;;
+        obj.age = &quot;20&quot;;
+        获取对象中的属性： 1） obj.name    2)  obj[&quot;name&quot;]
+
+    (2) var obj = {&quot;name&quot;:&quot;sandy&quot;,&quot;age&quot;:&quot;20&quot;}
+</code></pre><h3 id="forin-">forin 遍历对象中的属性</h3>
+<pre><code>    var obj = {&#39;name&#39;:&#39;sandy&#39;,&#39;age&#39;:&#39;20&#39;,&#39;skill&#39;:&#39;lovely&#39;}
+        for(var key in obj){
+            console.log(key + &#39;---&#39; + obj[key]);
+        }
+    // name---sandy;age---20;skill---lovely;
+</code></pre><h2 id="dom">DOM</h2>
+<h3 id="-">获取节点的几个方式</h3>
+<pre><code>        1）document.getEelementById()
+        2) document.getEelementByTagName() //通过标签名获取节点 获取的是一个伪数组；
+        3）docuemnt.getEelementByClassName()   //通过类名获取节点 获取的也是一个伪数组；
+            给一个节点设置类：ele.ClassName = &#39;&#39;;
+</code></pre><h3 id="innerhtml-innertext-textcontent">innerHTML、innerText/textContent</h3>
+<pre><code>    1.innerHTML
+        1) 获取；可以获取标签间的内容，如果标签间只有文本的话，则是直接获取，如果标签间还有嵌套标签的话，标签名也一并获取；
+        2）设置；可以给标签内嵌套内容，如果标签间还有嵌套标签，则标签会被渲染出来；
+
+        兼容问题：没有兼容问题，所有浏览器都支持；
+
+    2.innerText
+        1) 获取；通过innerText获取内容，如果还有嵌套的标签，只获取内容！
+        2) 设置；通过innerText设置内容，如果还有嵌套的标签，标签不会被渲染!会被转义成现在页面中；
+
+
+        兼容问题：有兼容问题。低版本的火狐浏览器不兼容
+
+    3.textContent
+        与innerText 作用一样；
+
+        兼容问题： 低版本的IE浏览器不兼容；
+</code></pre><h3 id="dom-">DOM中的事件</h3>
+<pre><code>            ele.onclick (单击)
+            ele.ondblclick (双击事件)
+            ele.onfocus (获取焦点事件)
+            ele.onblur (失去焦点事件)
+            ele.onkeydown (键盘按下事件)
+            ele.onkeyup (键盘抬起事件)
+            ele.onmouseover(鼠标移动事件)
+            ele.onmousedown (鼠标按下事件)
+            ele.onmouseup (鼠标抬起事件)
+            ele.onmouseout (鼠标离开事件)
+</code></pre><h3 id="dom-">DOM动态创建元素</h3>
+<pre><code>    1）document.write()
+    2) innerHTML
+        创建大批量的标签，多用于创建展示的标签
+    3）document.createElement() 重点；
+</code></pre><h3 id="dom-">DOM中设置自定义属性</h3>
+<pre><code>    1）设置自定义属性
+        ele.setAttribute();
+    2) 移除属性操作
+        ele.removeAttribute();
+    3) 获取属性值
+        ele.getAttribute();
+</code></pre><h3 id="-">节点类型判断</h3>
+<pre><code>1.nodeType
+    node.nodeType;//判断节点的类型；
+
+    标签节点----1；
+    属性节点----2；
+    文本节点----3；
+    注释节点----8；
+
+2.nodeName
+    node.nodeName;//获取节点的类型字符串格式；
+
+    标签节点----标签名;
+    属性节点----属性名；
+    文本节点----#text;
+    注释节点----#comment#;
+
+3.node.Value;
+    node.nodeValue;
+
+    标签节点----null；
+    属性节点----属性值；
+    文本节点----文本的内容；
+    注释节点----注释节点；
+</code></pre><h3 id="dom-">DOM中节点的操作</h3>
+<ul>
+<li><p>6.6.1 获取上一个节点</p>
+<pre><code>      previousSibling获取前一个节点，高级浏览器中可能或获取到空白文本节点、注释等；低版本的IE浏览器会忽略空白文本或注释；
+      previousElementSibling,  高版本浏览器忽略中间的空白文本或者注释，获得标签文本；而低版本的IE不支持此方法，具有兼容性问题！
+
+          function getPreviousEle(ele){
+                  if(ele){
+                      if(ele.previousElementSibling){
+                          return ele.previousElementSibling;
+                      }else{
+                          ele = ele.previousSibling;
+                          while(ele.nodeType != 1){
+                              ele = ele.previousSibling;
+                          }
+                          return ele;
+                      }
+                  }
+              }
+</code></pre></li>
+<li><p>6.6.2 获取下一个节点</p>
+<pre><code>      nextSibling 高版本浏览器会获取到空字符串    低版本的IE浏览器只能获取到标签节点；
+      nextElementSibling 高版本浏览器只会获取到标签字符串    低版本的IE有兼容性；
+
+          参照上一个封装兼容！
+</code></pre></li>
+<li><p>6.6.3 获取第一个节点</p>
+<pre><code>      firstChild   浏览器会获取到空白文本或者注释；
+      firstElementChild   高版本浏览器会忽略空白文本节点和注释节点   低版本IE浏览器支持
+</code></pre></li>
+<li><p>6.6.4 获取元素的节点</p>
+<pre><code>      childNodes   高版本的浏览器会将所有的节点获取  包括  空白文本节点、注释节点、标签节点    低版本的浏览器IE 会将空白文本节点忽略；
+
+      children   高板的浏览器只会获取到子元素中标签节点   忽略了 空白文本节点和注释节点    低版本的浏览器IE   还是会将注释节点获取；
+</code></pre></li>
+<li><p>6.6.5 获取最后一个节点</p>
+<pre><code>      lastChild 获取元素的最后一个节点，高版本的浏览器会获取到空白问题本，较低版本的IE浏览器会忽略空白文本节点和注释；
+      lastElementChild 获取的元素最后一个节点。高版本的浏览器会忽略空白文本节点和注释。而低版本的IE浏览器不兼容
+</code></pre></li>
+<li><p>6.6.6  克隆节点</p>
+<pre><code>      ele.cloneNode(true/false)
+          false -- 表示浅度克隆，只会克隆标签及属性;
+          true -- 深度克隆，会克隆标签的一切内容;
+</code></pre></li>
+<li><p>6.6.7  追加节点</p>
+<pre><code>      ele.appendChild(增加的节点)；
+      从父元素中追加节点到最后一子节点之后；
+</code></pre></li>
+<li><p>6.6.8  插入节点 </p>
+<pre><code>      ele.insertBrfore(要插入的节点，位置）;
+      从父元素中插入节点;
+</code></pre></li>
+<li><p>6.6.9  移除节点</p>
+<pre><code>      ele.removeChild(要移除的节点)
+</code></pre></li>
+</ul>
+<h3 id="-">定时器</h3>
+<ul>
+<li><p>setTimeout(fn,time);</p>
+<pre><code>  间隔多少秒自后施行匿名函数里面的代码，只执行一次！
+
+  清除定时器：
+          var timeId = setTimeout();
+          clearTimeout(timerId);
+</code></pre></li>
+<li><p>setInterval(fn,time);</p>
+<pre><code>  间隔多少秒后执行匿名函数的代码，一直循环的执行！
+
+  清楚定时器:
+          var timeId = setInterval();
+          clearInterval(timeId);
+</code></pre></li>
+</ul>
+<h3 id="-">获取元素的属性值</h3>
+<ul>
+<li><p>1.currentstyle</p>
+<pre><code>  ele.currentStyle.width/ele.currentStyle[&#39;width&#39;];
+
+  IE支持（谷歌、火狐不支持）；
+</code></pre></li>
+<li><p>2.getComputedStyle</p>
+<pre><code>  window.getComputedStyle(ele,null).width
+
+  IE8不支持；
+</code></pre></li>
+</ul>
+<h3 id="offset">offset</h3>
+<pre><code>        Dom元素中，ele.style.name 获取到的属性值只能是行前的样式，不能获取到内嵌的样式；
+    而offset的方式不但可以获取到行内的样式，内嵌的样式也可以获取到！
+</code></pre><ul>
+<li><p>1.offsetwidht/offsetheight</p>
+<pre><code>  ele.offsetwidth/ele.offsetheight  获取到元素的宽度和高度;
+
+  注意： offsetwidth/offsetheight = width/height + padding + border
+</code></pre></li>
+<li><p>2.offsetlLeft/offsetTop</p>
+<pre><code>  ele.offsetLeft/ele.offsetTop
+
+  获取的是自己的边框到最近定位的父级元素内边框的距离，若父级元素没有定位，则距离获取到body；
+
+  且获取的值只能获取到整数，碰上小数则会四舍五入
+</code></pre></li>
+</ul>
+<blockquote>
+<p>offsetLeft与style.left的区别</p>
+</blockquote>
+<pre><code>    1.style.left 是以margin的左上角为准，而offsetLeft是以border左上角为准；
+    2.style.left 只能获取行内样式；
+    3.style.left 是可读写属性，而offsetLeft是只读属性；
+    4.style.left 获取的是带有单位的字符串格式的属性值，offsetLeft获取的是number类型的属性值；
+</code></pre><h3 id="scroll">scroll</h3>
+<ul>
+<li><p>1.scrollwidth/scrollheight</p>
+<pre><code>  ele.scrollwidth/scrollheight = widht/height + padding + 内容超出的部分;
+</code></pre></li>
+<li><p>2.scrollTop/scrollLeft</p>
+<pre><code>  获取的是页面被卷去的部分；
+
+  一般都会配合window.onscroll事件一起使用！
+</code></pre></li>
+</ul>
+<h3 id="client">client</h3>
+<ul>
+<li><p>clientWidth/clientHeight</p>
+<pre><code>  clientWidth/clientHeight = width/hegiht + padding
+
+  获取可视区的宽度和高度，一般用于响应式，配合window.onresize事件进行使用；
+</code></pre></li>
+</ul>
+<h3 id="-">事件对象</h3>
+<pre><code>每个元素注册事件之后，在执行事件的时候，都会有一个事件对象；
+
+ele.onclick = function(event){ event = event || window.event }
+
+    事件对象event,里面可以获取到很多属性;
+        event.pageX/pageY;当前位置坐标到页面左上角的距离
+        event.clientX/clientY;当前位置坐标到当前可视区左上角的距离
+        event.type ; 检测事件的类型
+        event.target;  事件的源头 ---   event.srcElement(IE8)
+        event.currentTarget; 正在执行事件处理程序的当前对象
+        event.which; 获取鼠标按钮触发 : 1.左键； 2.中键；  3.右键
+</code></pre><h3 id="-">注册事件的另一种形式</h3>
+<ul>
+<li><p>addEventListener/attachEvent</p>
+<pre><code>  好处是可以对同一个对象注册多个相同事件名称；
+
+  1.ele.addEventListener(&#39;click&#39;,fn,false);//IE8不支持
+
+  2.ele.attachEvent(&#39;onclick&#39;,fn);//仅IE8支持
+</code></pre></li>
+</ul>
+<h3 id="-">移除事件</h3>
+<pre><code>    1.removeEventListener(&#39;type&#39;,fn,false);
+
+    2.detachEvent(on+&#39;type&#39;,fn);
+
+    3.ele.onclick = null;
+</code></pre><h3 id="-">事件冒泡</h3>
+<pre><code>    当一个元素的事件被触发，同样的事件会在当前对象的所有的祖先元素中一次的被触发，
+这种现象叫做事件的冒泡；
+
+    好处：事件委托；
+
+    清除冒泡阻止事件冒泡：event.stoppropagation;//IE8不支持
+                event.cancleBubble = true;
+
+
+    在js中阻止a标签的默认跳转：
+        event.preventDefault();//IE8不支持
+        event.returnValue = flase;
+</code></pre><h3 id="-">事件捕获</h3>
+<pre><code>    与事件冒泡相反，从祖先元素开始，知道目标触发；
+</code></pre><h3 id="-">事件的三个阶段</h3>
+<pre><code>1.捕获阶段 ---&gt; 2.目标阶段 ---&gt; 3.冒泡阶段
+</code></pre><h3 id="-">正则表达式</h3>
+<pre><code>1.正则的声明
+var reg = new RegExp();
+var ret = /定义的规则/；
+
+2.正则的匹配
+    text()
+        语法：reg.text(obj)
+        匹配字符串中是否存在指定的正则表达式，返回布尔值；
+
+    exec()
+        语法：reg.exec(obj)
+        匹配字符串，执行成功返回相关信息的数组，如果失败返回null;
+
+3.常用的一些正则的规则
+    \d  digit   数字
+    \D            非数字字符
+    \s    space    不可见字符    
+    \S            可见字符
+    \w    word    大小写字母熟悉或_
+    \W            与\w相反
+
+4.自定义正则规则
+    |              表示或
+    ()           提升优先级
+    []           表示匹配[]中任意的字符
+    [^ ]         表示取反，出[]内字符外的字符
+    [a-z]          -表示区间
+
+5.边界
+    /^ .. /        表示以什么开头；
+    / .. $/     表示以什么结尾；
+
+6.量词
+    *    重复0次或多次   x&gt;=0;
+    +   重复1次或多次   x&gt;=1;
+    ?   重复0测或1次    x = (0||1);
+    {n}  表示前面的字符出现{n}次；
+    /^..$/    表示严格匹配；   
+</code></pre><h2 id="bom">BOM</h2>
+<pre><code>BOM--浏览器对象模型；
+- window对象是javascript中的顶级对象
+- 所有定义在全局作用域中的变量、函数都会变成window对象的属性和方法
+- window对象的属性和方法在调用时可以省略window
+</code></pre><hr>
+<pre><code>- window.open(url,target,param) // target（窗口打开的位置）,param(窗口的属性，宽高等)；有返回值
+- window.close()
+</code></pre><h3 id="location">location</h3>
+<ul>
+<li><p>window.location</p>
+<ul>
+<li>location相当于浏览器的地址栏 // 可以将url解析成独立的代码片段</li>
+<li>window.location.href = &#39;http//www.baidu.com&#39;</li>
+<li>window.reload(true/false) // true:从本地缓存重新加载 ； false:从服务器重新加载数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="navigator">navigator</h3>
+<ul>
+<li><p>window.navigator</p>
+<p>  可以获取客户端的一些信息</p>
+<ul>
+<li>window.navigator.userAgent 获取用户电脑的版本信息</li>
+<li>window.navigator.platform </li>
+</ul>
+</li>
+</ul>
+<h3 id="history">history</h3>
+<ul>
+<li>window.history.back() // 后退</li>
+<li>window.history.forward() // 前进</li>
+</ul>
+<h1 id="jquery">jQuery</h1>
+<pre><code>    JavaScript是一门编程语言，jquery是用JavaScript实现的一个JavaScript库，目的是简化我们的开发
+
+    jQuery各版本的区别是：
+        1.x 版本支持IE6，7，8；
+        2.x 既以上不在支持IE6,7,8
+</code></pre><h2 id="jquery-">jQuery的及基本使用</h2>
+<h3 id="jquery-">jQuery的优点</h3>
+<pre><code>    1.jQuery的入口函数可以有多个，且没有兼容性问题。
+    2.容错性好。
+    3.代码简介。
+</code></pre><h3 id="jquery-">jQuery的入口函数</h3>
+<pre><code>    1.$(function(){});
+    2.$(document).ready(function(){});
+</code></pre><h3 id="jquery-javascript-">jQuery与javascript的入口函数执行时机</h3>
+<pre><code>    1.javascript的入口函数要等到页面中所有资源（包括文件、图片）加载完成才开始执行;
+    2.jQuery的入口函数只会等待文档书加载完成就开始执行，并不会等待图片、文件的加载；
+
+    在jQuery中，$ === jQuery;也就是说，在jQuery中，$符号可以完全让jQuery代替；
+</code></pre><h3 id="jquery-dom-">jQuery对象与DOM对象之间的转换</h3>
+<pre><code>    jQuery对象只能使用jQuery方法，DOM对象只能使用DOM对象方法；
+
+    1.DOM对象转jQuery对象
+        将DOM对象放在$()里面就可以将DOM对象转为jQuery对象；
+</code></pre><h3 id="jquery-">jQuery的选择器</h3>
+<h4 id="-">基本选择器</h4>
+<ul>
+<li><p>ID选择器</p>
+<p>  $(&quot;#id&quot;);</p>
+</li>
+<li><p>类选择器</p>
+<p>  $(&quot;.class&quot;);</p>
+</li>
+<li><p>标签选择器</p>
+<p>  $(&quot;标签名&quot;);</p>
+</li>
+<li><p>交集、并集选择器</p>
+<p>  $(&quot;div.box&quot;)/$(&quot;.box,.header&quot;);</p>
+</li>
+</ul>
+<h4 id="-">层级选择器</h4>
+<ul>
+<li><p>子代选择器</p>
+<p>  $(&quot;ul&gt;li&quot;)</p>
+</li>
+<li><p>后代选择器</p>
+<p>  $(&quot;.box ul li&quot;)</p>
+</li>
+</ul>
+<h4 id="-">过滤选择器</h4>
+<ul>
+<li><p>$(&#39;li&#39;).eq(index)/$(&#39;li:qe(index)&#39;);</p>
+<pre><code>  表示选择索引为index的对象选择器；index的索引从0开始
+</code></pre></li>
+<li><p>$(&#39;li:odd&#39;)</p>
+<pre><code>  获取到的li元素中，选择索引号为奇数的元素;
+</code></pre></li>
+<li><p>$(&#39;li:even&#39;)</p>
+<pre><code>  获取到的li元素中，选择索引号为偶数的元素;
+</code></pre></li>
+</ul>
+<h4 id="-">筛选选择器(方法)</h4>
+<ul>
+<li><p>$(&#39;.box&#39;).children(&#39;li&#39;)</p>
+<p>  在.box中寻找子代为li标签的元素；(类似子代选择器)</p>
+</li>
+<li><p>$(&#39;.box&#39;).find(&#39;li&#39;)</p>
+<p>  类似后代选择器</p>
+</li>
+<li><p>$(&quot;.box&quot;).siblings();</p>
+<p>  选择.box的兄弟姐妹节点，不包括自己本身；</p>
+</li>
+<li><p>$(&quot;.box&quot;).parent();</p>
+<p>  查找.box的父元素</p>
+</li>
+<li><p>$(&quot;.box&quot;).next()</p>
+<p>  获取下一个节点</p>
+</li>
+<li><p>$(&quot;.box&quot;).prev()</p>
+<p>  获取前一个节点</p>
+</li>
+<li><p>$(&quot;.box&quot;).nextAll()</p>
+<p>  获取该节点后面的所有节点</p>
+</li>
+<li><p>$(&quot;.box&quot;).prevAll()</p>
+<p>  获取该节点之前的所有节点</p>
+</li>
+</ul>
+<h3 id="jquery-api">jQuery一些常用的API</h3>
+<pre><code>只要是动画都有回调函数和时间；
+</code></pre><h4 id="-">事件</h4>
+<pre><code>    1.click(fn);
+    2.dbtclick(fn);
+    3.blur(fn);
+    ...
+</code></pre><h4 id="-">显示和隐藏</h4>
+<pre><code>    1.show()
+    2.hide()
+    3.toggle()
+
+    改变的样式是:opacity/display:none/widht/height
+</code></pre><h4 id="-">淡入淡出</h4>
+<pre><code>    1.fadeIn()
+    2.fadeOut()
+    3.fadeTo()
+    4.fadeToggle()
+
+    改变的样式是：opacity/display
+</code></pre><h4 id="-">滑入滑出(上下拉)</h4>
+<pre><code>    1.slideUp()
+    2.slideDown()
+    3.slideToggle()
+</code></pre><h4 id="animate-">animate()</h4>
+<pre><code>    animate()方法可以传入对象和回调函数
+</code></pre><h4 id="css-">css()</h4>
+<pre><code>    设置样式
+</code></pre><h4 id="html-">html()</h4>
+<pre><code>    与原生的innerHTML类似；
+</code></pre><h4 id="clone-">clone()</h4>
+<pre><code>    克隆节点，在jQuery中，括号里面无论是ture还是false，都表示深度克隆；true可以克隆事件，false不会克隆事件；
+</code></pre><h4 id="val-">val()</h4>
+<pre><code>    与原生的ele.value一样；
+</code></pre><h4 id="end-">end()</h4>
+<pre><code>    链式编程中向前找一个对象，只能向前一个;
+</code></pre><h4 id="stop-">stop()</h4>
+<pre><code>    停止当前正在执行的动画；
+</code></pre><h4 id="append-appendto-">append()/appendTo()</h4>
+<pre><code>    在父元素最后追加子节点
+</code></pre><h4 id="prepend-">prepend()</h4>
+<pre><code>    与DOM中insertBefore类似；
+</code></pre><h4 id="before-after-">before()/after()</h4>
+<pre><code>    在同级元素前面/后面添加元素；
+</code></pre><h4 id="attr-prop-">attr()/prop()</h4>
+<pre><code>    设置标签的属性；
+    prop()更多适用于表单中的disable/checked/selected属性；
+</code></pre><h4 id="empty-html-remove-">empty()/html(&#39;&#39;)/remove()</h4>
+<pre><code>    三个方法都能清空节点内容；remove()会将整个节点删除,包括自身；
+</code></pre><h3 id="-">类操作样式</h3>
+<pre><code>1.addClass()
+2.removeClass()
+3.hasClass()//判断类，返回一个boolean值
+4.toggleClass()
+</code></pre><h3 id="offset-">offset()</h3>
+<pre><code>    返回一个对象，有两个属性：left/top.  获取的left/top始终是以页面或body为准，与父元素是否定位无关。
+    offset()是一个可读写的属性；
+
+    注意区别:offsetLeft
+        ele.offsetLeft 获取的是自己的边框到最近定位的父级元素内边框的距离，若父级元素没有定位，则距离获取到body；
+</code></pre><h3 id="position-">position()</h3>
+<pre><code>    position()是一个只读属性，返回一个对象，有两个属性,left/top
+    position().left；  获取自身的margin到离自己最近的定位的父元素的距离；
+            //类比于原生的offsetLeft,offsetleft获取的是自己边框到最近定位的父级元素内边框的距离
+</code></pre><h3 id="width-height-">width()/height()</h3>
+<pre><code>    获取的是可视区的宽高；不带单位；是一个可读写的属性方法；
+</code></pre><h3 id="scrolltop-scrollleft-">scrollTop()/scrollLeft()</h3>
+<pre><code>    页面被卷去的距离，是可读写属性；
+
+    注意区分：
+        scroll()是个事件
+</code></pre><h3 id="jquery-">jQuery注册事件</h3>
+<ul>
+<li><p>简单事件绑定</p>
+<p>  click();
+  blur();
+  mouseenter();
+  mouseleave();
+  dbclick();
+  change();
+  focus();
+  keydown();</p>
+</li>
+<li><p>bind方式（1.7以后的jQuery版本被On取代，不推荐使用）</p>
+<pre><code>  作用：给匹配到的元素直接绑定事件
+
+  //绑定单击事件处理程序
+  $(&#39;ele&#39;).bind(&#39;click&#39;,function(){});
+
+  与简单事件绑定方式的优势：
+      可以同时绑定多个事件，如：$(&#39;ele&#39;).bind(&#39;click mouseleave&#39;,function(){});
+
+  缺点：要绑定事件的元素必须存在文档中；也就是不能给动态添加的元素注册事件
+</code></pre></li>
+<li><p>delegate方式</p>
+<pre><code>  特点：支持动态创建的元素添加事件;可实现事件委托；
+
+  //参数1        要绑定事件的元素
+  //参数2        事件类型
+  //参数3        事件处理函数
+  $(&#39;ele&#39;).delegate(&#39;p&#39;,&#39;click&#39;,function(){});
+
+  缺点是不能个自己注册事件，但是能实现事件委托；
+</code></pre></li>
+<li><p>on</p>
+<pre><code>  on注册事件几乎拥有了前面其他所有注册事件方式的优点；
+  $(&#39;ele&#39;).on(type,target,data,function(){})
+  //第一个参数        事件类型；
+  //第二个参数        执行事件的对象，也就是实现了事件委托
+  //第三个参数        传递给处理函数的数据，事件触发的时候可以通过event.data来获取使用
+  //第四个参数        事件处理函数
+</code></pre></li>
+</ul>
+<h3 id="-">事件解绑</h3>
+<ul>
+<li><p>bind/delegate</p>
+<p>  unbind()/undelegate()方式来解绑
+  无参数的时候解绑所有的事件，有参数解绑对应参数的事件</p>
+</li>
+<li><p>on</p>
+<p>  on注册事件使用off()方法来接触事件绑定
+  //off()        </p>
+<pre><code>  解绑匹配元素的所有事件
+</code></pre><p>  //off(&#39;click&#39;)    </p>
+<pre><code>  解绑对应的事件
+</code></pre><p>  //off(type,&#39;**&#39;)</p>
+<pre><code>  解绑所有代理的type事件，元素本身的事件不会被解绑
+</code></pre></li>
+</ul>
+<h3 id="-">事件触发器</h3>
+<ul>
+<li><p>trigger()</p>
+<pre><code>  $(&#39;div&#39;).click(function(){
+      $(&#39;p&#39;).trigger(&#39;click&#39;);
+  })
+  点击div的时候触发p标签的click事件；
+</code></pre></li>
+<li><p>triggerHandler()</p>
+<pre><code>  与trigger()一样，区别是triggerHandler触发对应事件目标事件的时候，不会触发其默认行为；
+</code></pre></li>
+</ul>
+<h3 id="each-">each()方法</h3>
+<pre><code>    each()是jQuery方法，调用的时候要用jQuery对象来调用
+        $ele.each(function(index,item){})；
+</code></pre><ul>
+<li><p>each()遍历数组</p>
+<p>  $.each(arr,function(index,item){});</p>
+</li>
+</ul>
+<blockquote>
+<p>注意与 数组 的forEach()方法进行区分；forEach(function(item,index){})    //这是DOM对象中的方法</p>
+</blockquote>
+<p>-each()遍历对象</p>
+<pre><code>$.each(obj,function(index,item){});
+</code></pre><h3 id="-">多库共存</h3>
+<pre><code>    当一个文件中引入多个jQuery文件，那么$符号的使用只会引用最后一个jQuery包里面的，不能使用前面jQuery包里面的$符号；
+    这样就使得$符号的冲突；
+</code></pre><ul>
+<li><p>解除冲突</p>
+<ol>
+<li><p>$.noConflict()；
+将后面的版本的$让出来，使用其他符号代替；
+var JD = $.noConflict()//将$符号让出来，有一个返回之后，使用这个返回复制给新的变量；
+那么这个变量可以代替$进行使用；</p>
+</li>
+<li><p>使用自执行函数划分作用域
+(function($){ 继续使用$符号和方法给})($)</p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>$.fn.jQuery可以检测当前的版本，也就是利用该方法检测当前$是属于哪个库的；</p>
+</blockquote>
+<h1 id="3-h5c3">3.H5C3</h1>
+<h2 id="h5">H5</h2>
+<pre><code>    低版本的浏览器对HTML5新增的标签是不认识的,默认是不存在;为使得低版本的浏览器对新增的标签兼容，有两种方法：
+    1.    使用动态创建元素的方法创建新增的标签，但是创建出来的元素默认是个行内元素；
+    2.    使用兼容包，引入插件解决兼容问题；
+</code></pre><h3 id="-">新增的一些更具语义化的标签</h3>
+<ul>
+<li>header/nav/section/aside/article/footer</li>
+</ul>
+<h3 id="-">智能表单</h3>
+<pre><code>&lt;input type=&#39;text&#39;/&gt;
+</code></pre><ul>
+<li>userName</li>
+<li>passWord</li>
+<li>email （邮件）</li>
+<li>tel （电话号码）</li>
+<li>url </li>
+<li>number</li>
+<li>search</li>
+<li>range</li>
+<li>color</li>
+<li>time</li>
+<li>date</li>
+<li>datetime</li>
+<li>moth</li>
+<li>week </li>
+</ul>
+<h3 id="-">新增表单标签</h3>
+<ul>
+<li><code>&lt;fieldset&gt;&lt;/fieldset&gt;</code></li>
+<li><p><code>&lt;datalist&gt;&lt;/datalist&gt;</code></p>
+<pre><code> &lt;input type=&#39;text&#39; list=&#39;datalist&#39;/&gt;
+     &lt;datalist id=&#39;datalist&#39;&gt;
+         &lt;option&gt;宝马&lt;/option&gt;
+     &lt;/datalist&gt;
+</code></pre></li>
+</ul>
+<h3 id="-">新增的表单属性</h3>
+<ul>
+<li><p>required</p>
+<pre><code>  表单中必填的的属性
+</code></pre></li>
+<li><p>placeholder</p>
+<pre><code>  占位符；
+</code></pre></li>
+<li><p>Autofocus</p>
+<pre><code>  自动获取焦点;
+</code></pre></li>
+<li><p>AutoCompelate = &#39;on/off&#39;</p>
+<pre><code>  提示之前输入过的内容
+</code></pre></li>
+<li><p>pattern</p>
+<pre><code>  规定用于验证输入字段的模式；模式指的是正则表达式；
+</code></pre></li>
+<li><p>multiple</p>
+<pre><code>  multiple 属性规定输入字段可选择多个值。
+</code></pre></li>
+</ul>
+<h3 id="-">新增的表单事件</h3>
+<ul>
+<li><p>oninvalid</p>
+<pre><code>  当用户输入内容无效的时候触发的事件；
+
+  oninvalid = function(){ this.setCustomValidity(&#39;输入有误！&#39;)}；
+</code></pre></li>
+<li><p>oninput</p>
+<pre><code>  当用户输入内容时候触发的事件,文本框事件
+</code></pre></li>
+<li><p>onchange</p>
+</li>
+</ul>
+<h3 id="-api">新增的API</h3>
+<ul>
+<li><p>document.querySelector()</p>
+<pre><code>  只能获取一个元素，不论对象是否是多个，也只会获取第一个元素；
+</code></pre></li>
+<li><p>document.querySelectorAll()</p>
+<pre><code>  类似document.getElementsByTagName();获取到的是一个维数组；
+</code></pre></li>
+</ul>
+<h3 id="-">新媒体标签</h3>
+<pre><code>- audio/video
+    autoplay/controls/play()/pause()/pasued
+</code></pre><h3 id="-">操作类样式</h3>
+<ul>
+<li><p>ele.classList.add() -- 添加类</p>
+<pre><code>  JQ: $().addClass();
+  js: ele.className = &#39;&#39; / ele.setAttribute(class,&#39;&#39;);
+</code></pre></li>
+<li><p>ele.classList.remove() -- 移除类</p>
+<pre><code>  JQ： $().removeClass();
+  js: ele.className = &#39;&#39;; ele.removeAttribute(class);
+</code></pre></li>
+<li><p>ele.classList.contains() -- 判断类，返回一个布尔值</p>
+<pre><code>  JQ： $().hasClass();// 返回一个布尔值
+</code></pre></li>
+<li><p>ele.classList.toggle() -- 切换类</p>
+<pre><code>  JQ: $().toggleClass()
+</code></pre></li>
+</ul>
+<h3 id="-">自定义属性</h3>
+<pre><code>    &lt;div data-url = &#39;aaa&#39;&gt;&lt;/div&gt;
+        div.dataset[&#39;url&#39;] = aaa;
+
+    设置属性： data-name = &#39;&#39;
+    获取属性： dataset[&#39;name&#39;]
+</code></pre><h2 id="css3">css3</h2>
+<h3 id="-">选择器</h3>
+<ul>
+<li><p>属性选择器</p>
+<pre><code>  li[class=&#39;box&#39;] -- 选择所有li拥有class为box的标签;
+  ele[attr*=val] -- 属性值里包含val字符并且在“任意”位置;
+  ele[attr^=val] -- 属性值里包含val字符并且在“开始”位置;
+  ele[attr$=val] -- 属性值里包含val字符并且在“结束”位置;
+</code></pre></li>
+<li><p>伪类选择器</p>
+<pre><code>  E:first-child；
+  E:last-child；
+  E:nth-child(n)；
+  E:nth-last-child(n)；
+</code></pre></li>
+<li><p>伪元素选择器</p>
+<pre><code>  :first-letter  //  获取元素下的第一个字符
+  :first-line  //  获取元素下的第一行
+  :selection  //  文本被选择的状态
+</code></pre></li>
+<li><p>其他选择器</p>
+<pre><code>  ele:checed{}
+  ele:selected{}
+  ele:disabled{}
+</code></pre></li>
+</ul>
+<h3 id="-">阴影</h3>
+<ul>
+<li><p>文本阴影</p>
+<pre><code>  text-shadow:水平配置偏移  垂直位置偏移  模糊距离  阴影颜色;
+</code></pre></li>
+<li><p>盒子阴影</p>
+<pre><code>  box-shadow:水平位置偏移  垂直位置偏移  模糊距离  阴影大小  阴影颜色  内/外阴影
+</code></pre></li>
+</ul>
+<h3 id="-">边框</h3>
+<ul>
+<li><p>border-radius : 水平弯曲/垂直弯曲</p>
+<pre><code>  边框可以分开设置每个边的弯曲程度;四个参数的方向分别为：上左 上右  下右  下左；
+</code></pre></li>
+<li><p>border-image : url()  border-image-slice  border-image-repeat;</p>
+<ul>
+<li>border-image-soure:url();</li>
+<li>border-image-slice:10; // 将图片从四边裁切下对应数值的宽度的大小,然后将裁切下的边框图片在border宽度范围内显示;注意数值没有单位！</li>
+<li>border-image-repeat //  设置背景平铺；</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">背景</h3>
+<ul>
+<li><p>background:url(),url(),..;</p>
+<ul>
+<li><p>background-size //  背景图片的大小 contain/cover</p>
+</li>
+<li><p>background-origin // 背景原点，背景显示的地方 content-box/border-box/padding-box</p>
+</li>
+<li><p>background-clip // 背景裁切 content-box/border-box/padding-box</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">渐变（颜色的渐变）</h3>
+<ul>
+<li><p>线性渐变</p>
+<pre><code>  background: linear-gradient(to ,color-begin position,color-end position);
+          注：to 方向;
+</code></pre></li>
+<li><p>径向渐变</p>
+<pre><code>  background: radial-gradient(radial at pisition,color-begin,color-end);
+          注：参数（半径，起始位置，开始颜色，结束颜色）;
+</code></pre></li>
+</ul>
+<h3 id="-transition">过渡 transition</h3>
+<pre><code>    transition:过渡的属性  过渡的时间  延迟多少时间;
+</code></pre><blockquote>
+<p>过渡完成的事件：
+transitionend; 一般当做节流阀用；
+ ele.addEventListener(&#39;transitionend&#39;,function(){});</p>
+</blockquote>
+<h3 id="2d-transform">2D转换 transform</h3>
+<ul>
+<li><p>scale 缩放比例</p>
+<pre><code>  transform:scale() // 参数可放两个或一个;
+</code></pre></li>
+<li><p>translate 移动</p>
+<pre><code>  transform:translateX()/translateY()/translateZ();
+</code></pre></li>
+<li><p>rotate 旋转</p>
+<pre><code>  transform:rotate( xxx deg);
+  transform-origin: // 旋转中心点；
+</code></pre></li>
+<li><p>skew 倾斜</p>
+<pre><code>  transform:skew() // 两个参数分别为水平方向和垂直方向;
+</code></pre></li>
+</ul>
+<h3 id="3d-">3D 转换</h3>
+<ul>
+<li><p>perspective (透视)</p>
+<pre><code>  近大远小的效果,一般给父元素设置；
+</code></pre></li>
+<li><p>transform-style: preserve-3d （设置3D效果一定要设置该属性）</p>
+<pre><code>  让盒子有一个3D的效果，一般给父元素设置;
+</code></pre></li>
+<li><p>backface-visibility: visible/hidden (设置背面不可见)</p>
+</li>
+</ul>
+<h3 id="animation-">animation 动画</h3>
+<pre><code>    设置动画的步骤:
+         1.定义动画
+             @keyframes name {
+                from{}
+                to{}
+            }
+         2.谁需要进行动画函数  给谁添加animation
+
+    动画的调用:
+    aniamtion: name duration dalay animation-iteration-count aniamtion-play-state
+</code></pre><ul>
+<li><p>animation-name 动画名称</p>
+</li>
+<li><p>animation-duration 定义动画完成一个周期所需要的时间，以秒或毫秒计 </p>
+</li>
+<li><p>animation-timing-function 规定动画的速度曲线</p>
+<ul>
+<li>linear 动画从头到尾的速度是相同的</li>
+<li>ease 默认</li>
+</ul>
+</li>
+<li><p>animation-delay 属性定义动画何时开始</p>
+</li>
+<li><p>animation-iteration-count 属性定义动画的播放次数</p>
+<ul>
+<li>infinite 规定动画应该无限次播放。</li>
+</ul>
+</li>
+<li><p>animation-direction 属性定义是否应该轮流反向播放动画</p>
+<ul>
+<li>alternate 动画应该轮流反向播放。</li>
+</ul>
+</li>
+<li><p>animation-fill-mode 属性规定动画在播放之前或之后，其动画效果是否可见</p>
+<ul>
+<li>forwards 当动画完成后，保持最后一个属性值;</li>
+<li>backwards </li>
+<li>both</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">弹性布局</h3>
+<blockquote>
+<p>display:flex;</p>
+</blockquote>
+<p>当给一个盒子设置了display：flex之后，这个盒子就有了<strong>主轴 </strong>和<strong>侧轴</strong> 的概念。 主轴：Flex容器的主轴主要用来配置Flex项目，默认是水平方向 侧轴：与主轴垂直的轴称作侧轴，默认是垂直方向的 方向：默认<strong>主轴从左向右</strong> ，默认<strong>侧轴从上到下</strong></p>
+<p><img src="display-flex.png" alt=""></p>
+<ul>
+<li><p>flex-direction (调整主侧轴)</p>
+<pre><code>  flex-direction 可以调整主侧轴方向
+</code></pre><ul>
+<li>row：主轴方向为水平向右</li>
+<li>column：主轴方向为竖直向下</li>
+<li>row-reverse:主轴方向为水平向左</li>
+<li>column-reverse:主轴方向是竖直向上。</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">全屏事件</h3>
+<p>requestFullScreen();//有很强的兼容性，使用时要加前缀兼容；</p>
+<p>如：
+video.webkitRequestFullScreen(); </p>
+<h3 id="-">拖拽事件（文件上传）</h3>
+<h4 id="-">读取文件</h4>
+<pre><code>         input.addEventListener(&quot;change&quot;,function(){
+            // 1. 获取文件，文件存放于files属性中,是个伪数组，使用下标获取文件
+            var file = this.files[0]
+            // 2. 创建一个文件读取对象，文件读取工具
+            var fr = new FileReader();
+            // 3. 将文件进行读取
+            fr.readAsDataURL(file);
+            // 4. 文件读取文件之后的操作
+            fr.onload = function(){
+                // 处理文件的代码
+                fr.result//读取后返回的结果
+            }
+        });
+</code></pre><h4 id="-">拖拽</h4>
+<ul>
+<li><p>事件</p>
+<pre><code>  (自身事件)
+</code></pre><ul>
+<li>dragstart //  拖拽开始时触发的事件</li>
+<li>dragend //  拖拽结束触发</li>
+<li><p>drag // 只要在拖拽状态就会触发</p>
+<p>  (目标事件)</p>
+</li>
+<li>dragover // 拖拽元素在目标元素上停留的状态</li>
+<li>drop // 给目标元素添加拖拽的元素事件</li>
+</ul>
+</li>
+<li><p>状态</p>
+<pre><code>  draggable = true;使元素具有拖拽效果；
+</code></pre></li>
+</ul>
+<h4 id="-">拖拽并读取文件</h4>
+<pre><code>    //1.阻止事件默认行为
+    box.addEventListener(&quot;dragover&quot;,function(e){
+        e.preventDefault();
+    });
+    //2.文件读取
+    box.addEventListener(&quot;drop&quot;,function(e){
+        //2.1 阻止事件默认
+        e.preventDefault();
+        //2.2 获取文件，鼠标拽入的时候  通过鼠标目标对象获取事件  dataTransfer对象数据转让
+        var file = e.dataTransfer.files[0];
+        //2.3 创建一个文件读取对象
+        var fr = new FileReader();
+        //2.4 读取文件
+        fr.readAsDataURL(file);
+        //2.5 文件读取完毕之后的操作
+        fr.onload = function(){
+            fr.result//读取完毕之后返回的结果数据;
+        }
+    })
+</code></pre><h3 id="-">储存</h3>
+<ul>
+<li><p>cookie</p>
+<pre><code>  （1）设置保存cookie
+  //储存
+  document.cookie = value;
+  //获取
+  var cookie = document.cookie;
+
+  以上都是基于会话机制的，也就是关闭浏览器就丢失；
+  （2）方法二
+  // 设置cookie并设置存储时间
+  document.cookie = &quot;userAge=18;expires=&quot;+new Date()
+</code></pre></li>
+</ul>
+<blockquote>
+<p>特点： 默认储存7天，储存大小只有4K；</p>
+</blockquote>
+<ul>
+<li><p>sessionstorage</p>
+<pre><code>  //储存
+  sessionstorage.setItem(key,value);
+  //获取
+  sessionstorage.getItem(key);
+  //删除    
+  sessionstorage.removeItem(key);
+</code></pre><blockquote>
+<p>特点：1.不能再多个窗口下共享数据（浏览器关闭就会被删除）；2.储存大小为5M；</p>
+</blockquote>
+</li>
+<li><p>localstorage</p>
+<pre><code>  //储存
+  localstorage.setItem(key,value);
+  //获取
+  localstorage.getItem(key);
+  //删除
+  localstorage.removeItem(key);
+</code></pre><blockquote>
+<p>特点：1.永久生效，除非手动删除；2.可以多个窗口共享；3.储存大小为20M；</p>
+</blockquote>
+</li>
+<li><p>jquery.cookie</p>
+</li>
+</ul>
+<p>jquery.cookie插件可以更加方便有效的对想要储存的数据进行储存；</p>
+<pre><code>    基本用法：$.cookie(key,value);
+    设置有效期的cookie: $.cookie(key,value,{expires:value})//value代表需要储存的天数；
+
+    移除cookie:  $.removeCookie(key);
+</code></pre><h3 id="-">网络状态</h3>
+<blockquote>
+<p>在移动端，经常需要检测设置是在线还是离线，HTML5定义了一个navigator.onLine属性，这个属性用于检测设备是否联网。
+navigator.onLine在不同浏览器中有细微的差别。</p>
+</blockquote>
+<h4 id="-">网络状态</h4>
+<pre><code>    navigator.onLine返回用户当前的网络状况，是一个布尔值
+    1.如果浏览器连不上网（包括局域网）,就是离线状态，返回false
+    2.在线状态返回true;
+</code></pre><h4 id="-">监听网络变化事件</h4>
+<ul>
+<li><p>offline</p>
+<pre><code>  window.addEventListener(&quot;offline&quot;,function(){
+      //网络断开时调用的事件
+  });
+</code></pre></li>
+<li><p>online</p>
+<pre><code>  window.addEventListener(&#39;online&#39;,function(){
+      //网络链接是被调用的代码    
+  })
+</code></pre></li>
+</ul>
+<h3 id="-">地理位置</h3>
+<blockquote>
+<p>在HTML规范中，增加了获取用户地理信息的API,这样使得我们可以基于用户位置开发互联网应用，即基于位置服务
+LBS（Location Base Service）</p>
+</blockquote>
+<h4 id="-">基本用法</h4>
+<pre><code>    //获取当前的地理位置
+    navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+    //实时获取位置
+    navigator.geolocation.watchPostion(successCallback,errorCallback);
+</code></pre><p>实例：</p>
+<pre><code>    navigator.geolocation.getCurrentPosition(function(position){
+            position.coords.latitude //纬度
+            position.coords.longitude // 经度
+            position.coords.accuracy // 经度
+            position.coords.altitude // 海拔高度
+        },function(){
+            定位失败后执行的代码
+        });
+</code></pre><h2 id="web-">web开发</h2>
+<pre><code>    视口属性：
+    &lt;meta name=&quot;viewport&quot; content=&quot;width = device-width,user-scaleable = no,
+    initial-scale = 1.0,maximum-scale=1.0,minimum-scale=1.0&quot;&gt;
+</code></pre><h3 id="zepto-js-jquery-">zepto.js (类似jquery)</h3>
+<pre><code>    Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。 如果你会用jquery，那么你也会用zepto。
+</code></pre><p><img src="../zepto.png" alt=""></p>
+<pre><code>    需要什么功能操作就导入对应的包名称；与PC端相比，zepto增加了touch模块，可用于移动端触摸点击；
+</code></pre><h3 id="bootstrap-">bootstrap (框架)</h3>
+<p>Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目；</p>
+<h4 id="-">栅格系统</h4>
+<ul>
+<li><p>基本布局</p>
+<pre><code>  &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+              &lt;div class=&quot;col-md-1&quot;&gt;.col-md-1&lt;/div&gt;
+           &lt;div class=&quot;col-md-1&quot;&gt;.col-md-1&lt;/div&gt;
+        &lt;/div&gt;
+  &lt;/div&gt;
+</code></pre></li>
+<li><p>布局选项</p>
+</li>
+</ul>
+<p><img src="../bootstrap.png" alt=""></p>
+<h3 id="swiper-">Swiper (插件)</h3>
+<p>Swiper是纯javascript打造的滑动特效插件，面向手机、平板电脑等移动终端;
+Swiper能实现触屏焦点图、触屏Tab切换、触屏多图切换等常用效果。
+Swiper开源、免费、稳定、使用简单、功能强大，是架构移动终端网站的重要选择！</p>
+<hr>
+<pre><code>    使用步骤
+    1.加载插件，需要用到的文件有swiper.min.js和swiper.min.css文件；
+    2.HTML内容：
+        &lt;div class=&quot;swiper-container&quot;&gt;
+               &lt;div class=&quot;swiper-wrapper&quot;&gt;
+                &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;
+                 &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;
+                 &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;
+               &lt;/div&gt;
+                    &lt;!-- 如果需要分页器 --&gt;
+                &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+
+                       &lt;!-- 如果需要导航按钮 --&gt;
+                &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+
+                       &lt;!-- 如果需要滚动条 --&gt;
+                &lt;div class=&quot;swiper-scrollbar&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    3.script 内容
+        var mySwiper = new Swiper (&#39;.swiper-container&#39;, {
+                direction: &#39;vertical&#39;,//设置滚屏的方向
+                loop: true,//设置可否循环滚动
+
+                // 如果需要分页器
+                pagination: &#39;.swiper-pagination&#39;,
+
+                // 如果需要前进后退按钮
+                nextButton: &#39;.swiper-button-next&#39;,
+                prevButton: &#39;.swiper-button-prev&#39;,
+
+                // 如果需要滚动条
+                scrollbar: &#39;.swiper-scrollbar&#39;,
+              })        
+</code></pre><ul>
+<li><p>tap高亮效果</p>
+<pre><code>  -webkit-tap-highlight-color:
+</code></pre></li>
+</ul>
+<h3 id="rem">rem</h3>
+<pre><code>    使用rem的步骤：
+    1.将设计图等分为N等分，计算1rem的单位
+    2.设置html的font-size
+        &lt;script&gt;
+            //页面打开的时候设置html的字体大小,html的字体大小影响到rem的数值
+            document.querySeletor(&#39;html&#39;).style.fontSize = window.screen.widht/N + ‘px’;
+            window.onresize = function(){
+            document.querySeletor(&#39;html&#39;).style.fontSize = window.screen.widht/N + ‘px’;
+            }
+        &lt;/script&gt;
+</code></pre><h3 id="sass-">sass基本使用</h3>
+<ul>
+<li><p>@import 导入其他scss文件</p>
+<pre><code>  @import &#39;normalize.scss&#39;;
+</code></pre></li>
+<li><p>变量的定义</p>
+<pre><code>  $JDR:rgb(201, 21, 35);
+
+  调用：background-color:$JDR;
+</code></pre></li>
+<li><p>函数的定义</p>
+<pre><code>  $function size($size){
+      $return ($size/32)*1rem;
+  }
+
+  调用：font-size:size(22px);
+</code></pre></li>
+<li><p>混入定义</p>
+<pre><code>  混入定义类似js中的函数，可以代用一次输出多行代码；
+
+  定义：
+  @mixin measure($width,$height){
+      width:size($width);
+      height:size($height);
+  }
+
+  调用：
+  @include measure(300,200);
+</code></pre></li>
+</ul>
+<h1 id="ajax">Ajax</h1>
+<h2 id="php-">php基础</h2>
+<p>php是服务端语言，与javascript语法高度类似</p>
+<h3 id="-">入门</h3>
+<p>php文件以php结尾，所有的代码都包含在&lt;?php  代码段  ?&gt;</p>
+<pre><code>    &lt;?php
+        echo &#39;hello world!&#39; // echo 是输出内容的方式
+    ?&gt;
+</code></pre><h3 id="-">变量</h3>
+<p>1、变量以$开头 字母/数字/下划线 不能以数字开头</p>
+<p>2、区分大小写</p>
+<h3 id="-">内容输出</h3>
+<ul>
+<li>echo:  输出简单的数据类型，如字符串、数值</li>
+<li>var_dump();    输出详细信息，如对象，数组；</li>
+</ul>
+<h3 id="-">拼接字符串</h3>
+<p>在php中，使用&#39;.&#39;号来链接字符串，类似javascrip中的&#39;+&#39;用于字符串的拼接；</p>
+<pre><code>    //php
+        echo &#39;我是：&#39;.$name.&#39;年龄：&#39;.$sex;
+    //javascript
+        alert(&#39;我是：&#39;+ name +&#39;年龄：&#39;+sex;)
+</code></pre><h3 id="-">数组</h3>
+<ul>
+<li><p>普通类型数组</p>
+<pre><code>  // php中的普通类型的数组定义；
+      $student = array(&#39;rose&#39;,&#39;jack&#39;,&#39;roman&#39;,&#39;piter&#39;);
+  //调用数组跟javascript类似，通过数组的下标来调用
+      echo $student[1] // jack
+</code></pre></li>
+<li><p>关系型数组(类似javascript的对象)</p>
+</li>
+</ul>
+<blockquote>
+<p>在php中,数组的长度的方法是使用count()方法;注意与javascript中数组长度lenght区分
+count($arr);//数组名称放于方法内</p>
+</blockquote>
+<p>php中的关系型数组定义,是键值对关系，键值对使用=&gt;来进行赋值</p>
+<pre><code>    $person = array(&quot;name&quot;=&gt;&quot;sandy&quot;,&quot;age&quot;=&gt;&quot;22&quot;);
+        echo $person[&#39;name&#39;] // sandy
+</code></pre><h3 id="-">声明编码</h3>
+<pre><code>    &lt;?php
+        header(&#39;content-type:text/html;charset=utf-8&#39;);
+        //声明编码，告诉服务器文件的编码类型，类似于html文件中的 &lt;meta charset=&quot;UTF-8&quot;&gt;
+    ?&gt;
+</code></pre><h2 id="ajax-">AJAX请求</h2>
+<h3 id="-">数据提交方式</h3>
+<h4 id="get">get</h4>
+<p>get方式提交数据，一般数据在URL中进行拼接，数据以键值对的关系进行上传;用户可以看见</p>
+<blockquote>
+<p>get方式提交数据，在服务器中，以php语言为例，获取提交数据的方式是：$_GET
+$_GET获取的是一个关系型数组，可以通过属性对应的属性值；</p>
+<h4 id="post">post</h4>
+</blockquote>
+<p>post方式提交数据，用户看不到数据，暗文；</p>
+<blockquote>
+<p>post方式提交数据，类似隔天，在服务器中，php获取的方式是：$_GET</p>
+<h4 id="form">form</h4>
+</blockquote>
+<p>form表单提交数据的方式，必须填写结果属性：</p>
+<ol>
+<li>action= &quot;请求地址/php路径&quot;;</li>
+<li>method = &quot;get/post&quot;;</li>
+<li><p>input标签中，要设置name属性</p>
+<pre><code> &lt;form action=&quot;&quot; method=&quot;get/post&quot;&gt;
+     &lt;input type=&#39;text&#39; name=&#39;username&#39;/&gt;
+     &lt;input type=&#39;submit&#39; value=&#39;提交&#39;&gt;
+ &lt;/form&gt;
+</code></pre></li>
+</ol>
+<h4 id="form-">form表单文件上传</h4>
+<p>表单中上传文件 必须使用<strong>POST</strong>上传，且要添加一个规定在将表单数据发送到服务器之前如何对其进行编码 <strong>enctype=&#39;multipart/form-data&#39;</strong></p>
+<pre><code>    &lt;form action=&#39;&#39; method=&#39;post&#39;  entype=&#39;multipart/form-data&#39;&gt;
+        &lt;input type=&#39;file&#39; name=&#39;img&#39;/&gt;
+        &lt;input type=&#39;submit&#39; value=&#39;提交&#39;&gt;
+    &lt;/form&gt;
+</code></pre><blockquote>
+<p>在服务器中，php获取上传的文件通过 $_FILES 获取,类似$_GET/$_POST,获取的结果是个关系型数组；
+通过 move_uploaded_file(),方法对获取的文件进行保存处理；</p>
+</blockquote>
+<h4 id="ajax-">ajax请求</h4>
+<ul>
+<li><p>请求报文</p>
+<ul>
+<li>请求的方法（请求行）</li>
+<li>浏览器的信息（请求头）</li>
+<li>发送的数据（请求报文）</li>
+</ul>
+</li>
+<li><p>相应报文</p>
+<ul>
+<li>请求是否成功（状态行）</li>
+<li>服务器的信息（相应头）</li>
+<li>主要的内容（相应主体）</li>
+</ul>
+</li>
+</ul>
+<h3 id="ajax-">ajax请求</h3>
+<p>ajax请求，通过异步对象进行请求，主要的步骤：</p>
+<ol>
+<li><p>声明一个异步请求对象</p>
+<pre><code> var xhr = new XMLHttpRequest()
+</code></pre></li>
+<li><p>声明请求的方式</p>
+<pre><code> xhr.open(&#39;get/posh&#39;,服务器地址);
+</code></pre></li>
+<li><p>设置请求头</p>
+<pre><code> xhr.setRequestHeader(&quot;content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+</code></pre></li>
+<li><p>设置请求主体</p>
+<pre><code> xhr.send(null);
+</code></pre></li>
+<li><p>回调函数</p>
+<pre><code> xhr.onload = function(){ 
+     xhr.responseText
+     }
+</code></pre></li>
+</ol>
+<h4 id="get-">get请求</h4>
+<pre><code>    1.创建对象
+        var xhr = new XMLHttpRequest();
+    2.设置请求方式，请求url
+    （get方式请求数据，数据以键值对的关系拼接在url地址后面）
+        xhr.open(&quot;get&quot;,&quot;url&quot;+data);
+    3.设置请求头        
+    //get请求，请求头可以省略
+        xhr.setResponHeader();
+    4.回调函数，相应报文回来后要指向的代码
+        xhr.onload = function(){
+            xhr.responseText;
+        }        
+    5.请求主体
+        xhr.send(null);
+</code></pre><h4 id="post-">post请求</h4>
+<pre><code>    1.创建对象
+        var xhr = new XMLRequest();
+    2.设置请求方式，请求url
+        xhr.open(&quot;post&quot;,&quot;url&quot;);
+    3.设置请求头
+        xhr.setRequestHeader(&quot;conten-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+    4.回调函数，相应报文回来后要执行的代码
+        xhr.onload = function(){
+            xhr.responseText;
+        }
+    5.设置相应主体
+        xhr.send(data);//post请求需要发送的数据放在send()里面，以键值对的关系；
+</code></pre><h4 id="onload-onreadystatechange">onload与onreadystatechange</h4>
+<p>AJAX请求中的回调函数，有两个写法，onload/onreadeystatechage,onload在较低版本的浏览器中可能存在兼容性的问题，而onreadystatechange在所有浏览器中都支持，所以对AJAX封装的时候使用onreadystatechange;</p>
+<p>onreadystatechange--状态改变触发的事件，</p>
+<pre><code>    AJAX请求的状态(readyStage)：
+    0 --&gt; UNSEND(未打开) open()方法未被调用；
+    1 --&gt; OPENED(未发送) send()方法未被调用;
+    2 --&gt; HEADERS_RECEIVED (已获取响应头) send()方法已经被调用, 响应头和响应状态已经返回;
+    3 --&gt; LOADING (正在下载响应体)  响应体下载中; responseText中已经获取了部分数据;
+    4 --&gt; DONE (请求完成) 整个请求过程已经完毕;
+
+    页面请求的状态(status):
+    200 --&gt; 页面请求成功；
+    404 --&gt; 页面不存在发生错误;
+
+    因为使用onreadystatechange会触发多个状态下的事件，所以在使用的时候需要进行判断
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 &amp;&amp; xhr.status == 200){ xhr.responseText; }
+        }
+</code></pre><h3 id="-">传输数据类型</h3>
+<h4 id="xml">XML</h4>
+<p>xml文件数据，类似html文件，是一个双标签文件，标签之间放数据；xx.xml;</p>
+<pre><code>    XML传输数据的准备：
+    - 服务器php中
+        &lt;?php
+            //1.告诉服务器返回的数据类型
+            header(&quot;content-type:text/xml;charset=utf-8&quot;);
+            //2.读取文件并返回
+            $data = file_get_contents(&#39;文件路径文件名&#39;);
+            //3.将数据返回
+            echo $data;
+        ?&gt;
+
+    - 客户端html文件中
+        html文件中获取服务器返回的xml数据类型并解析
+        xhr.onload = function(){
+            //xml数据文件，使用xhr.responseXML获取
+            var result = xhr.responseXML//获取到的是xml文件的document对象，类似html文件的document对象；
+            //读取xml文件中的数据
+            result.querySelector(&#39;&#39;).innerHTML;
+            //result是xml文件的ducment对象，所以类似html文件通过选择器获取标签间的数据；
+        }
+</code></pre><h4 id="json">JSON</h4>
+<p>json是一种特殊格式的字符串，用于传输数据;</p>
+<pre><code>    json传输数据的准备
+    - 服务器中php文件中
+    &lt;?php
+        //1.告诉服务器传输的是什么格式的数据文件
+        header(&quot;content-type:application/json;charset=uft-8&quot;);
+        //2.解析文件
+        $data = file_get_contents(&#39;文件路径/文件名&#39;);
+        //3.返回数据
+        echo $data;
+    ?&gt;    
+
+    - 客户端html文件中
+        获取服务器传回的数据并解析
+        xhr.onload=function(){
+            var result = xhr.responseText;
+            //获取到的json数据仍是一个字符串格式的数据，需要对json字符串进行转义
+            var data = JSON.parse(result);
+            //在js中，对象转字符串的方式：JSON.stringify();
+            //字符串转对象的方法:JSON.parse();
+        }
+</code></pre><h3 id="jsonp-">JsonP接口</h3>
+<p>浏览器安全策略：不同源的页面之间默认是不允许发送请求的；
+什么是同源呢？
+        协议名，地址，端口都一致的地址就是同源；</p>
+<p>那么不同源真的不可以访问吗？答案是可以的，只要在访问的服务器中设置一个允许访问的设置即可！这个技术称为CORS技术；</p>
+<pre><code>    &lt;?php
+        header(&quot;Access-contorl-Allow-Origin:*&quot;);
+        //设置允许不同源页面访问
+    ?&gt;
+</code></pre><p><strong>对于JsonP接口的请求方式</strong>:</p>
+<ul>
+<li><p>Ajax</p>
+<p>  对于JsonP接口数据请求，在Ajax请求中需要设置dataType，告诉浏览请求的接口</p>
+<pre><code>  $.ajax({
+      ulr:&#39;&#39;,
+      data:data,
+      dataType:&#39;jsonp&#39;,//让jquery内部自动创建一个script标签并设置src属性；
+      success:function(){}
+  });
+</code></pre></li>
+<li><p>Dom元素的src属性请求</p>
+<p>  img或其他标签元素，如果有src属性，通过src属性指定不同源素材，是可以获取到不同源的数据，且实质是发送一个get请求；JsonP就是利用元素的src属性，来支持跨域访问实现数据获取的！</p>
+<pre><code>  //通过Dom元素的src属性向不同源的服务器请求数据
+  &lt;script src=&quot;请求的不同源的服务器地址&quot;&gt;&lt;/script&gt;
+  //实质是发送一个get请求，所以，数据可以在地址栏中进行拼接
+  &lt;script src=&quot;https//:xxx.com/?name=jaks&amp;age=16&quot;&gt;
+
+  在服务器中通过echo返回要处理的数据程序
+  &lt;script&gt;
+      function Dodata(data){console.log(data)};//定义要处理数据的函数
+  &lt;/script&gt;
+  &lt;script src=&quot;https//:xxx.com/?name=jaks&amp;age=16&amp;callback=Dodata&quot;&gt;//通过callback拼接，向服务器发送处理返回数据的函数代码；
+</code></pre></li>
+</ul>
+<h1 id="-">面向对象</h1>
+<ul>
+<li><p>面向对象的特征</p>
+<pre><code>  1.封装性
+      封装性就是把变量和函数集中在一起，放置到某个对象身上；
+  2.继承性
+      一个对象可以使用另外一个对象的属性和方法，就是继承性，可以达到节省内存，共享属性方法；
+  3.多态
+      任何时候都可改变对象的属性名；就是多态
+</code></pre></li>
+</ul>
+<h2 id="-">构造函数</h2>
+<p>配置new关键字创建实例的函数就是构造函数，构造函数的定义与普通函数的第一方法没有区别，区别的是在使用的方式上;</p>
+<pre><code>    function dog(){ console.log(&#39;汪汪汪&#39;) };
+        //普通函数的使用
+            dog();
+        //构造函数的使用    
+            var taiDi = new dog();
+</code></pre><h3 id="-">返回值</h3>
+<pre><code>构造函数没有返回值，new构造函数得到新实例；如果有return,return基本数据类型，最终还是得到新实例；return引用数据类型，最终会覆盖默认的新实例，得到引用类型；
+</code></pre><h3 id="-">类与实例的概念</h3>
+<p><strong>js中构造函数可看成类；由构造函数创建的对象就是实例；</strong></p>
+<h4 id="-">类成员与实例成员</h4>
+<p>成员就是对象的属性和方法；</p>
+<p>类成员（静态成员）：就是构造函数（类）的属性和方法；类成员只能类使用，实例不能使用，原型中的方法是供实例使用，所以也数据实例成员；</p>
+<p>实例成员：实例的属性和方法，供实例使用的属性和方法；</p>
+<h4 id="-">静态成员与实例成员</h4>
+<pre><code>    1.静态成员表示的是静态方法和静态属性的概念，所谓的静态，就是由构造函数所提供的；
+    2.实例成员，表示的是实例方法和实例属性，所谓的实例就是由构造函数所创建的对象；
+</code></pre><h3 id="-">对象属性</h3>
+<ul>
+<li><p>对象属性的查找规则</p>
+<pre><code>  1.先找自身；
+  2.自身没有去原型对象上找；
+  3.原型没有，就去原型的原型上找，知道找不到返回undefined
+</code></pre></li>
+</ul>
+<h2 id="-">原型</h2>
+<p>原型是一个对象，作用是让其他对象共享其属性方法，任何对象可以成为原型，达到节省内存的目的；
+函数都有一个默认的prototype属性，可以给他赋任何对象，构造函数的实例默认可以访问prototype里面的东西.</p>
+<p>原型的作用：节省内存；</p>
+<h3 id="prototype-_proto_">prototype 和 <em>proto</em></h3>
+<p>每个函数都有prototype属性，每个对象都有<strong>proto</strong>属性；
+函数比较特殊，既是函数又是对象，所以prototype与<strong>proto</strong>都有；</p>
+<p>prototype是从构造函数的角度获取原型的;
+<em>proto</em>是从实例对象的角度获取原型的；</p>
+<p>prototype/<strong>proto</strong>/construtor 之间的关系;</p>
+<pre><code>    function Person(){}//一个匿名函数，构造函数
+    var fn = new Person() //构造函数的实例化
+    那么：
+        fn._proto_ === Person.prototype；
+        fn.constructor.prototype === Person.prototype;
+        fn.constructor === Person;
+        (通过构造函数的prototype获取原型全等于通过实例化函数的_proto_获取原型)
+</code></pre><h3 id="ecma-">ECMA原型链规律</h3>
+<p>1.实例是什么类型，就先继承什么的prototype;
+2.构造函数的默认prototype对象自己,继承Object.prototype;</p>
+<blockquote>
+<p>Math/Json对象的方法都定义在自身，不定义在prototype上;</p>
+</blockquote>
+<h3 id="hasownproperty-">hasOwnProperty()方法</h3>
+<pre><code>    hasOwnPrototype()方法可以检测一个属性是存在于实例中还是存在于原型;如果存在于自身，则会返回turn,如果存在于原型中,则会返回false;
+
+    语法： Obj.hasOwnProperty(&#39;属性名&#39;);// 返回一个boolean值；
+
+    var obj = {this.name:&#39;sandy&#39;,this.age:&#39;22&#39;};
+    obj.hasOwnProperty(&#39;name&#39;)//true;
+    obj.hasOwnProperty(&#39;toString&#39;)//false;
+</code></pre><h3 id="in-">in 运算符</h3>
+<pre><code>    in 运算符；作用：检测对象是否可以使用某属性；
+    语法： 属性名 in obj;   //返回一个boolean值；
+
+    注意：与hasOwnPrototype()方法的区别，in 是检测对象是否可以使用某属性，无论该属性存在于原型还是存在于自身中;
+         hasOwnProperty()只能检测自身时候含有某属性；
+</code></pre><h3 id="instanceof">instanceof</h3>
+<pre><code>    作用：判断对象的原型链中是否含有某构造函数的prototype;//返回的也是一个boolean值；
+
+    注意： instanceof 与in 运算符 hasOwnProperty() 的区别是，instanceof 判断的是对象是否含有构造函数的prototype，判断对象是是否继承了原型链prototype;
+
+    in 运算符是判断对象是否可以使用某属性，判断的是属性,只要有该属性存在，无论存在于构造函数中还是存在于原型中，返回的结果都是ture; 
+    hasOwnProperty也是判断的是对象是否含有某属性,判断的对象是属性，如果该属性存在于prototype中，hasOwnProperty判断为false;
+</code></pre><h3 id="extend-">extend()</h3>
+<pre><code>    通过extend方法可以给对象添加另一个对象的原型方法；
+
+    例： function Animal(){}; Animal.prototype.eat = function(){console.log(&#39;吃&#39;)};
+        function Person(){}//Person与Animal都有一些公共的方法属性，那么可以将Animal的方法通过拷贝的
+    方式拷贝给Person;
+
+    extend的作用就是可以给一个对象方法添加另一个对象方法或属性;//混入继承
+    语法:$.extend(Person,Animal.property...);//extend是jQuery封装的方法，使用的时候需要引入jQuery包；
+
+    extend()方法中，如果只有一个参数，就是jQuery插件的扩展: $.fn.extend({name:function(){});
+                   如果传多个参数，就是将后面对象的属性方法copy给第一个对象；
+</code></pre><h3 id="function-eval-">Function()与eval()</h3>
+<ul>
+<li><p>Function():</p>
+<p>   语法：new Function(形参1，形参2，... ，代码体);</p>
+<pre><code>  代码体是字符串。
+</code></pre></li>
+<li><p>eval()</p>
+<p>  语法：eval(代码体)
+  代码体是字符串。</p>
+</li>
+</ul>
+<p>Function()与eval()的共同点都是执行的代码是字符串</p>
+<h2 id="-">作用域</h2>
+<p>作用域：变量的有效范围</p>
+<h3 id="-">全局变量</h3>
+<p>在代码的任意地方都可访问的变量，即它的作用范围属于全局，在函数外声明；</p>
+<p>生命周期：从定义开始，到页面被卸载结束</p>
+<h3 id="-">局部变量</h3>
+<p>概念：在定义该变量的局部地方才可使用的变量，即它的作用范围属于局部，在函数内部声明的变量；</p>
+<p>生命周期：从函数执行，然后变量定义开始，通常到函数执行完毕后结束；生命周期特殊情况：如果有闭包函数引用了某局部变量，那么这个局部变量的生命周期就和闭包进行了绑定。</p>
+<h3 id="-">作用域链</h3>
+<p>函数运行时可以访问的所有作用域，称为作用域链</p>
+<h3 id="-">闭包</h3>
+<p>概念：引用了外部局部变量的函数就是闭包；</p>
+<p>特点：1.会延长所引用局部变量的生命周期；2.可以让外界间接访问原本访问不到的局部变量；</p>
+<h3 id="call-apply-">call()/apply()</h3>
+<p>call与apply方法都可以改变this的指向;使用call()/apply()方法改变this的指向前提是fn方法自身有this指向!</p>
+<pre><code>    1. call()
+        语法：fn.call(new this,参数1,参数2...)
+        参数是给函数调用所需要的参数;
+        fn为需要改变this的函数
+
+    2. apply()
+        语法：fn.apply(new this,[参数1,参数2..])
+        参数是传给fn函数的实参;
+        fn是需要改变this的函数
+</code></pre><p>call()与apply()除了在传参的形式上有区别,其用法和作用都是一样的;</p>
+<blockquote>
+<p>应用场景：(1)借用数组的方法操作伪数组: var obj={},[].push.call(obj,num1,num2..);
+(2)Object.prototype.toString.call(opt)//判断对象的类型</p>
+<p>谁的方法借用给谁...   [].push.call()</p>
+</blockquote>
+<h3 id="-">函数的几种调用方式</h3>
+<ol>
+<li>函数调用模式 ==&gt; fn() // this指向window;</li>
+<li>方法调用模式（属性调用）==&gt; 对象.方法名()/对象[方法名] // this指向最后调用的对象，即谁调用this指向谁;</li>
+<li>构造函数调用模式； ==&gt; this指向构造新实例;</li>
+</ol>
+<h2 id="-es5-">数组ES5新增的方法</h2>
+<h3 id="foreach">forEach</h3>
+<pre><code>    forEach方法用于遍历数组；arr.forEach(function(value,index,arr){});
+
+    forEach方法没有返回值，返回的是undefined;在回调函数中的第三个参数，可以用于存放function内部this的新指向对象;
+
+    var arr = [];
+    arr.forEach(function(value,index){console.log(this)}); // window;
+    arr.forEach(function(value,index,arr){console.log(this)}); // Array;
+</code></pre><p>forEach()没有返回值；</p>
+<h3 id="map">map</h3>
+<pre><code>    map方法也用于遍历数组;arr.map(function(value,index,arr){});
+
+    map()与forEach()都用于遍历数组，区别是：forEach()没有返回值，map()方法有返回值，放回的值会组成新数组;
+
+    其他用法和性质跟forEach()一模一样;
+</code></pre><p>map()有返回值，返回值会组成新的数组；</p>
+<h3 id="filter">filter</h3>
+<pre><code>    filter()方法用于过滤数组，其结果是返回新的过滤后的数组；
+
+    var newArr = arr.filter(function(){
+                    if(){return true}
+                        else{return false}
+                    });
+</code></pre><h3 id="indexof">indexOf</h3>
+<pre><code>    与字符串的indexOf用法一样;
+</code></pre><h2 id="-">严格模式</h2>
+<p>use strict</p>
+<p>1.变量生命必须使用var,否则报错；
+2.函数调用模式,this不再是window,而是undefined;
+3.call与apply指向谁就是谁;
+4.argument不再与形参绑定;</p>
+<h1 id="canvas">canvas</h1>
+<blockquote>
+<p>canvas通过属性进行宽高设置，且不带单位；通过style设置的大小会使canvas画布失真</p>
+</blockquote>
+<h2 id="-">基本使用</h2>
+<pre><code>    &lt;canvas id=&quot;canvas&quot; width=&quot;800&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
+    &lt;script&gt;
+        1.获取元素
+            var canvas = document.querySelector(&#39;#canvas&#39;);
+        2.获取绘制入口
+            var hy = canvas.getContext(&#39;2d&#39;) // 意为画布是2d画布，webgl是3d画布，但有兼容性问题；
+        3.指定起点和终点
+            hy.moveTo(); // 取值为坐标不带单位
+            hy.lineTo();
+        4.描边
+            hy.stroke();//  填充是使用 hy.fill()
+    &lt;/script&gt;
+
+    -  发送AJAX请求步骤： 
+    &gt; 1.声明一个异步对象
+          var xhr = new XMLHttpRequest();
+    &gt; 2.请求方式
+          xhr.open();
+    &gt; 3.设置请求头
+          xhr.setRequestHeade();
+    &gt; 4.回调函数
+          xhr.onreadystatechange = function(){
+               if(xhr.readyStage==4&amp;&amp;xhr.status == 200){
+                   xhr.responseText;
+               }
+          } 
+    &gt; 5.请求主体
+          xhr.send(data)；
+
+
+    - 拖拽上传事件
+    &gt; 1.获取文件，文件存放于files属性中,是个伪数组，使用下标获取文件
+         var file = this.files[0]
+    &gt; 2.创建一个文件读取对象，文件读取工具
+        var fr = new FileReader();
+    &gt; 3.将文件进行读取
+        fr.readAsDataURL(file);
+    &gt; 4.文件读取文件之后的操作
+        fr.onload = function(){
+            // 处理文件的代码
+            fr.result//读取后返回的结果
+        } 
+</code></pre><h2 id="-">绘制形状</h2>
+<ul>
+<li><p>fillRect(x,y,width,height)</p>
+<pre><code>  绘制一个填充的矩形,x/y为矩形左上角的坐标起点,width/height为矩形宽高;
+</code></pre></li>
+<li><p>strokeRect(x,y,width,height)</p>
+<pre><code>  绘制一个矩形边框；
+</code></pre></li>
+<li><p>clearRect(x,y,width,height)</p>
+<pre><code>  清除指定矩形区域，让清除部分完全透明;
+</code></pre></li>
+</ul>
+<pre><code>&gt; moveTo(x,y);  指定画笔移动到画布的坐标，也可以称之为起点；
+
+&gt; lineTo(x,y);  指点画笔或一条指点的终点坐标；
+
+&gt; beginPath();  开辟新路径；
+
+&gt; closePath();  闭合路径；
+</code></pre><ul>
+<li><p>arc(x,y,radius,startAngle,endAngle,anticlockwise)</p>
+<pre><code>  绘制一个圆弧,以x/y为圆心,radius为半径,从弧度为startAngle的位置开始绘制,到弧度为endAngle的位置；
+  anticlockwise指定绘制图像的方向是顺时针还是逆时针；true时，是逆时针方向，否则顺时针方向；
+</code></pre></li>
+</ul>
+<h2 id="-">样式和色彩</h2>
+<ul>
+<li><p>fillStyle = color;</p>
+<pre><code>  设置填充的颜色为color;
+</code></pre></li>
+<li><p>strokeStyle = color;</p>
+<pre><code>  设置图形轮廓的颜色为color;
+</code></pre></li>
+<li><p>globalAlpha = value;</p>
+<pre><code>  设置canvas里面的所有图形的透明度为value，0~1；
+</code></pre></li>
+</ul>
+<h3 id="-line-styles">线型Line styles</h3>
+<ul>
+<li><p>lineWidth = value;</p>
+<pre><code>  设置线宽为value；
+</code></pre></li>
+<li><p>setLineDash([]);</p>
+<pre><code>  设置虚线，数组内放置2~4个数值，分别表示实线与虚线的长度；
+</code></pre></li>
+<li><p>getLineDash();</p>
+<pre><code>  获取虚线的值；
+</code></pre></li>
+<li><p>lineDashOffset = value;</p>
+<pre><code>  设置虚线样式的起始偏移量；
+</code></pre></li>
+</ul>
+<h2 id="-">绘制文本</h2>
+<ul>
+<li><p>fillText(text,x,y,[maxWidth]);</p>
+<pre><code>  在x/y坐标的位置，填充text文本，[maxWidth]是可选的，表示绘制的最大宽度；
+</code></pre></li>
+<li><p>strokeText(text,x,y,[maxWidth]);</p>
+</li>
+</ul>
+<h3 id="-">文本的样式</h3>
+<ul>
+<li><p>font = value;</p>
+<pre><code>  设置字体的大小和样式,value = &#39;20px 微软雅黑&#39;;两个参数，缺一不可；
+</code></pre></li>
+<li><p>textAlign = value;</p>
+<pre><code>  设置文本的对齐方式，可选值有：start,end,left,right,center;
+</code></pre></li>
+<li><p>textBaseline = value;</p>
+<pre><code>  设置文本基线的对其方式，可选值:top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。
+</code></pre></li>
+<li><p>direction = value;</p>
+<pre><code>  设置文本的方向，可选值：ltr, rtl, inherit。默认值是 inherit。
+</code></pre></li>
+</ul>
+<blockquote>
+<p>补充： 设置数字保留几位小数的方法，number.toFixed(2)//设置number保留2位小数,四舍五入;</p>
+</blockquote>
+<h2 id="-">绘制图片</h2>
+<pre><code>    步骤：1.创建一个img对象。设置img对象的图片来源;
+         2.图片加载完毕之后，将图片绘制于canvas上;
+
+
+    var img = new Image()  //创建一个img对象
+        img.src = &#39;&#39;//设置图片的路径
+
+        img.onload = function(){
+                ctx.drawImage();
+            }
+</code></pre><ul>
+<li><p>drawImage();</p>
+<ul>
+<li><p>drawImage(img,x,y);</p>
+<pre><code>  参数1  为绘制的图片
+  参数2/3   为图片左上角在画布中显示的坐标值
+</code></pre></li>
+<li><p>drawImage(img,x,y,dw,dh);</p>
+<pre><code>  参数1  绘制的图片对象
+  参数2/3   图片在画布显示的位置
+  参数4/5   图片在画布显示的大小
+</code></pre></li>
+<li><p>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)</p>
+<pre><code>  参数1  绘制的图片对象
+  参数2/3   从图片中截取的矩形左上角位于图片的坐标
+  参数4/5   截取的矩形的大小
+  参数6/7   截取的图片将要放置于画布中的坐标
+  参数8/9   截取的图片在画布显示的大小
+</code></pre></li>
+</ul>
+</li>
+<li><p>getImageData(x,y,width,height)</p>
+<pre><code>  getImageDate()获取指定区域的像素数据,像素数据为rgba值,返回的结果是一个数组，数组的长度为：width*height*4 // 4--rgba();
+</code></pre><h2 id="-transformations">变形 Transformations</h2>
+</li>
+</ul>
+<h3 id="-">状态的保存于恢复</h3>
+<ul>
+<li><p>save()</p>
+<pre><code>  保存画布中当前的状态;    
+</code></pre></li>
+<li><p>restore()</p>
+<pre><code>  恢复之前保存的画布状态；可以多次调用，遵循状态栈的调用方式;
+</code></pre></li>
+</ul>
+<h3 id="translate-">translate()</h3>
+<pre><code>    translate(x,y) 方法，它用来移动 canvas 和它的原点到一个不同的位置;（平移坐标轴）
+</code></pre><h3 id="rotate-">rotate()</h3>
+<pre><code>    rotate(Math.PI) 方法，用来对canvas 和他的原点旋转;(坐标轴旋转);
+</code></pre><h3 id="scale-">scale()</h3>
+<pre><code>    scale(value,value) 方法，我们用它来增减图形在 canvas 中的像素数目，对形状，位图进行缩小或者放大；
+</code></pre><h2 id="-">路径重合</h2>
+<ul>
+<li><p>globalCompositeOperation = type;</p>
+<pre><code>  路径重合时候的操作;
+</code></pre><ul>
+<li><p>destination-over；</p>
+<p>原图形覆盖在新绘制上</p>
+</li>
+<li><p>source-in;</p>
+<p>仅显示（新图形）重叠的部分；其他区域透明</p>
+</li>
+<li><p>destination-in</p>
+<p>仅显示（原图）重叠部分；</p>
+</li>
+<li><p>source-out；</p>
+<p>仅显示（新图形）不重叠的部分；</p>
+</li>
+<li><p>destination-out；</p>
+<p>仅显示（原图）不重叠的部分；</p>
+</li>
+<li><p>xor；</p>
+<p>重叠的部分不显示（变透明）；</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="git">git</h1>
+<p>Git是一款免费、开源的<strong>分布式</strong>版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。
+与之同样在企业中运用的版本控制器是SVN，SVN是<strong>集中式</strong>版本控制器，分布式相比于集中式的最大区别在于开发者可以提交到本地，每个开发者通过克隆（git clone），在本地机器上拷贝一个完整的Git仓库;</p>
+<ul>
+<li>git的工作区内部图</li>
+</ul>
+<p><img src="&quot;../git.png&quot;" alt=""></p>
+<h2 id="base-">base基本命令</h2>
+<ul>
+<li>pwd  打印当前路径的名称(print working diretofy)</li>
+<li>ls   列举当前目录</li>
+<li>cd   切换目录(change diretory)</li>
+<li><p>mkdir   创建文件夹(make diretory)</p>
+<pre><code>  mkdir  app/aa  -p        // app 不存在时,可以在后面加上 -p,就会先创建app,才创建aa;
+</code></pre></li>
+<li>touch  创建文件</li>
+<li><p>rm   删除文件或文件夹(remove)</p>
+<pre><code>  rm -r  // 删除文件夹
+</code></pre></li>
+<li>cp   拷贝文件(copy)</li>
+<li>mv   剪切移动文件(move)</li>
+<li>clear    清命令屏</li>
+<li>cat   查看文件内容</li>
+<li><p>vi    vi编辑器，对文件进行简单的编辑；</p>
+<pre><code>  在vi编辑器界面，i/a进行编辑，esc退出编辑,  :w保存编辑  :q退出vi编辑器
+</code></pre></li>
+</ul>
+<h2 id="git-">git提交管理文件的基本命令</h2>
+<ul>
+<li>git init (初始化)</li>
+<li>git status (查看文件状态)</li>
+<li>git add (将文件提交到暂存区)</li>
+<li>git commit -m  (将暂存区的所有文件提交到仓库区)</li>
+<li>git log / git reflog  / git log --oneline (查看提交的版本日志)</li>
+<li>git push ___ master (将仓库的文件提交到服务器)</li>
+<li>git pull ___ (将服务器中的文件下载到本地)</li>
+<li><p>git remote add (变量名) (服务器地址)</p>
+<pre><code>  变量名保存服务器地址；
+</code></pre></li>
+<li><p>git clone ___</p>
+<pre><code>  类似于git pull 的功能，git clone更加智能更加便捷，下载代码的同时还会对文件夹初始化;
+</code></pre><h3 id="-git-">设置不受git监控的文件管理</h3>
+<p>创建一个文件名称为.gitignore的文件，里面放不受监控的文件名</p>
+</li>
+</ul>
+<h3 id="-">版本回滚</h3>
+<p>git reset --hard 版本号;</p>
+<pre><code>    1. 查看日志，获取版本号
+        git log / git reflog / git log --oneline
+    2. 使用版本回滚命令,输入版本号进行版本回滚
+        git reset --hard 版本号
+</code></pre><h3 id="git-">git分支</h3>
+<pre><code>    1. 查看分支
+        git branch
+    2. 创建分支
+        git branch name //创建一个名称为name的分支
+    3. 切换分支
+        git checkout name // 切换到名称为name的分支
+    4. 合并分支上的内容
+        git merge name // 将name分支上的文件合并到主分支上，注意，该操作应该在主操作上进行!
+    5. 删除分支
+        git branch -d name //删除分支名称为name的分支 
+</code></pre>
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
