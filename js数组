@@ -1,0 +1,8 @@
+判断数据是否为数组的三种方式
+1.  Array.isArray(数据)
+var scores=[10,20,30]
+console.log(Array.isArray(10)); console.log(Array.isArray(scores));
+2.  obj instanceof Array
+console.log(scores instanceof Array);
+3.  Object.prototype.toString.call(数据)==>[object Array];
+console.log(Object.prototype.toString.call(scores))
